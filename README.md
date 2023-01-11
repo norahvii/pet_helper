@@ -1,5 +1,4 @@
 ## PET helper
----
 
 This script requires no external libraries. :) 
 
