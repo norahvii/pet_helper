@@ -1,0 +1,3 @@
+index,tracer_name,desired_static_delay,desired_dynamic_delay,MST,MDT,model_state_if_dynamic,model_state_if_static,static_minimum,static_maximum,dynamic_minimum,dynamic_maximum
+1,t1,30,0,30,30,logan,nonlogan,27,34,0,4
+2,t2,40,0,40,20,nonlogan,nonlogan,27,44,0,4
