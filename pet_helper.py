@@ -27,10 +27,10 @@ try:
     # Print selected tracer
     print(f'You selected: {selected_tracer}')
     # Ask for start time
-    input_start_time = str(input("""(0054,0016)	Radiopharmaceutical Start Time:
+    input_start_time = str(input("""(0054,0016)	   Radiopharmaceutical Start Time:
 Enter Injection Time: """))
     # Ask for series time
-    input_end_time = str(input("""(0008,0031)	Series Time:
+    input_end_time = str(input("""(0008,0031)    Series Time:
 Enter Scan Start Time: """))
 
 except KeyboardInterrupt:
@@ -56,8 +56,8 @@ delta = round(difference.total_seconds() / 60.0)
 print(f"Delay is {delta} mins")
 
 # Populate variables based on selected tracer
-index = data[selection-1][0]
-tracer_name = data[selection-1][1]
+# index = data[selection-1][0]
+# tracer_name = data[selection-1][1]
 desired_static_delay = data[selection-1][2]
 desired_dynamic_delay = data[selection-1][3]
 mst = data[selection-1][4]
@@ -113,11 +113,15 @@ try:
         # Unacceptable dynamic
         if delta > int(dynamic_maximum) and delta < int(static_minimum):
             print(f"{delta} is{red} beyond tolerance{cl} for {selected_tracer} (dynamic: {model_state_if_dynamic}).")
+            late_time_dynamic = int(delta) - int(desired_dynamic_delay)
+            print(f"Scan started {late_time_dynamic} min(s){red} late{cl}.")
             print(f"Dynamic minimum: {dynamic_minimum}")
             print(f"Dynamic maximum: {dynamic_maximum}")
         # Unacceptable static
         if delta > int(static_maximum):
             print(f"{delta} is{red} beyond tolerance{cl} for {selected_tracer} (static: {model_state_if_static}).")
+            late_time_static = int(delta) - int(desired_static_delay)
+            print(f"Scan started {late_time_static} min(s){red} late{cl}.")
             print(f"Static minimum: {static_minimum}")
             print(f"Static maximum: {static_maximum}")
 
